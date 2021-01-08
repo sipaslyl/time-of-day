@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex,nofollow" />
     <style>
 		* {padding:0; margin:0;}
-		html {background-color:#ccc;}
+		html {background-color:rgb(231, 231, 231);}
 		body {
 			font-family: Arial, Helvetica, sans-serif;
 			max-width:960px; /* keeps from getting too large on wide screen */
@@ -71,16 +71,9 @@
     <main>
 	 <header><h3>An IT 121 assignment by Lylla Sipaseuth</h3></header>
 	 <div id="mydiv">Greeting goes here</div>
-	 <p>This HTML5 Flexible template could be a good starting point for some of your projects.  The template file starts by setting a background color on the HTML element, and setting max-width on the body, which is styled like a wrapper.  The BODY element is also set to a percentage width so it leaves a bit of HTML color until it shrinks in size toward the mobile view.</p>
-	 <p>There is an image with a class of FLEXIBLE which is set to a max-width equal to the size of the image.  Simutaneously the class sets the image to a percentage width, allowing the image to flex in size.  The height is not changed, as this would skew the image.</p>
-	 <p>The LIST elements inside the NAV are displayed inline by setting the display to be inline-block.  Bullets are removed by setting the UL to display</p>
-	 <p>The FOOTER includes a clear:both to keep everything above it!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
-     </main>
+	 <img id ="image" src="images/" alt="Picture of Me!" class="flexible" />
     <footer>
-      <small>&copy; 2013, All Rights Reserved ~
-      <a href="https://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
-      <a href="https://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
+      <small id="copyright">&copy;
       </small>
     </footer>
 	<!-- END Footer -->
@@ -88,20 +81,63 @@
 
 		let myDate = new Date();
 		let myHour = myDate.getHours();
+		//let myHour =2; // for testing
+		let dayNum = myDate.getDay();
+		let year = myDate.getFullYear();
+		let picture = "";
+		let weekday ="";
 		let myGreeting ="";
 		let myColor = "";
 
-		if(myHour > 12){
+		if(myHour > 5 & myHour < 12){
+			myGreeting = "Good morning!";
+			myColor ="yellow";
+			picture = "morning.jpg"
+		}
+		else if(myHour < 18 & myHour > 11){
 			myGreeting = "Good afternoon!";
 			myColor ="orange";
+			picture = "afternoon.jpg"
+		}
+		else if(myHour < 21 & myHour> 17){
+			myGreeting = "Good evening!";
+			myColor ="blue";
+			picture = "evening.jpg"
 		}
 		else{
-  			myGreeting = "Good morning?";
-  			myColor = "yellow";
+  			myGreeting = "Good night!";
+			  myColor = "gray";
+			  picture = "night.jpg"
+		}
+
+		switch(dayNum){
+			case 0:
+				weekday = "Sunday";
+				break;
+			case 1:
+				weekday = "Monday";
+				break;
+			case 2:
+				weekday = "Tuesday";
+				break;
+			case 3:
+				weekday = "Wednesday";
+				break;
+			case 4:
+				weekday = "Thursday";
+				break;
+			case 5:
+				weekday = "Friday";
+				break;
+			case 6:
+				weekday = "Saturday";
+
 		}
        
-		document.getElementById("mydiv").innerHTML = myGreeting;
+		document.getElementById("mydiv").innerHTML = myGreeting +" Today is "+weekday+".";
 		document.body.style.backgroundColor = myColor;
+		document.getElementById("copyright").innerHTML += year;
+		document.getElementById("image").src+=picture;
 
 	</script>
 </body>
